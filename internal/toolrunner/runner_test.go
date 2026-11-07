@@ -2,6 +2,7 @@ package toolrunner
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -35,15 +36,24 @@ func TestRun(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	// The helper is this test executable, so -race adds its default one-second
+	// exit delay. Ordinary cases need room for that delay and process startup.
+	const helperTimeout = 10 * time.Second
 	for _, tc := range []struct {
 		mode    string
 		timeout time.Duration
 		bad     bool
-	}{{"ok", time.Second, false}, {"large", time.Second, true}, {"slow", 30 * time.Millisecond, true}, {"bad", time.Second, true}} {
+	}{{"ok", helperTimeout, false}, {"large", helperTimeout, true}, {"slow", 30 * time.Millisecond, true}, {"bad", helperTimeout, true}} {
 		t.Run(tc.mode, func(t *testing.T) {
 			r, err := Run(context.Background(), Request{Executable: exe, Args: []string{"-test.run=^TestHelperProcess$", "--", tc.mode, "repospect-helper"}, Enabled: true, Timeout: tc.timeout, MaxOutput: 100})
 			if (err != nil) != tc.bad {
 				t.Fatalf("error %v", err)
+			}
+			if tc.mode == "slow" && !errors.Is(err, context.DeadlineExceeded) {
+				t.Fatalf("slow helper should hit its deadline, got %v", err)
+			}
+			if tc.mode != "slow" && errors.Is(err, context.DeadlineExceeded) {
+				t.Fatalf("%s helper unexpectedly timed out: %v", tc.mode, err)
 			}
 			if !tc.bad {
 				var result struct {

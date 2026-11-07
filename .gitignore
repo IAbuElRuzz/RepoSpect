@@ -1,0 +1,10 @@
+/bin/
+/dist/
+*.test
+coverage.out
+/repospect
+/repospect.exe
+.DS_Store
+.env
+.env.*
+!.env.example

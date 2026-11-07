@@ -1,0 +1,7 @@
+Use case: ads-marketing
+Asset type: wide GitHub README hero banner for the open-source developer security CLI RepoSpect.
+Primary request: An original, refined technical editorial illustration for RepoSpect, a local-first repository security inspector.
+Scene/backdrop: deep midnight navy with subtle grid and generous negative space, a luminous cyan inspection lens hovering over an abstract branching repository graph, one amber risk node, fine precise connecting lines. Restrained, confident, professional security tooling aesthetic. No hooded hackers, skulls, padlocks or alarmist imagery.
+Composition: panoramic landscape about 2.5:1, crisp geometric illustration with elegant restrained dimensional light, large perfectly legible typography on left, graph/lens illustration on right, clear at GitHub README scale.
+Text (verbatim): "RepoSpect" and below it "Inspect before you execute."
+Constraints: only those two text lines, no fake terminal results, no performance/security claims, no badges, no watermarks. Cyan and amber on midnight navy. Polished original open-source brand artwork.

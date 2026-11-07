@@ -1,0 +1,6 @@
+{
+  "name": "harmless-static-fixture",
+  "private": true,
+  "scripts": { "preinstall": "node scripts/install.js" },
+  "dependencies": { "example-package": "1.0.0" }
+}

@@ -1,0 +1,22 @@
+name: Feature request
+description: Propose a detection, parser, integration or developer improvement.
+title: "feat: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the developer workflow or missing security evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and acceptance criteria
+      description: Explain how this can work without executing untrusted code.
+    validations:
+      required: true
+  - type: textarea
+    id: fixtures
+    attributes:
+      label: Safe examples and false-positive considerations
